@@ -19,6 +19,14 @@ const _NormalRegulation = r'#_\$.+?#_\$';
 
 extension RichTextPart on String {
   List<MFRichTextPart> richTextPartListWithRegulation(String regulation) {
+    if (this.isEmpty) {
+      return [];
+    }
+
+    if (regulation.isEmpty) {
+      return [MFRichTextPart(start: 0, end: this.length, value: this)];
+    }
+
     List<RegExpMatch> regList = RegExp(regulation).allMatches(this).toList();
     if (regList.isEmpty) {
       return [MFRichTextPart(start: 0, end: this.length, value: this)];
