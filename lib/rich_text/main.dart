@@ -1,5 +1,6 @@
-import 'package:async/async.dart';
 import 'package:flutter/material.dart';
+import 'string_extension.dart';
+
 void main() {
   runApp(MaterialApp(
     title: 'main',
@@ -17,32 +18,25 @@ class Home extends StatefulWidget {
 
 class _State extends State<Home> {
 
-  Future<int> from() async {
-    return 123;
-  }
-
   @override
   void initState() {
     super.initState();
-
-    var s = Stream.fromFuture(Future.value(123));
-    s.listen((v) {
-
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-
-
-    CancelableOperation.fromFuture(Future.value(1));
-
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('main'),
       ),
       body: Container(
-
+        child: Text.rich(
+          TextSpan(
+//              children: r'#_$a#_$4567#_$b#_$8#_$c#_$9999'.textSpanList
+//              children: '9999'.textSpanList
+              children: r'#_$苹果#_$9999'.textSpanList
+          )
+        )
       ),
     );
   }

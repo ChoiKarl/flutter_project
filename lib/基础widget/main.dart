@@ -1,15 +1,17 @@
-import 'package:flutter/foundation.dart';
+import 'dart:async';
+import 'package:async/async.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 void main() {
-  runApp(MaterialApp(
-    title: '',
-    theme: ThemeData(
-      primarySwatch: Colors.blue,
+  runApp(
+    MaterialApp(
+      title: '',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Home(),
     ),
-    home: Home(),
-  ));
+  );
 }
 
 class Home extends StatefulWidget {
@@ -18,66 +20,57 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  static const plugin = const MethodChannel("test");
-  static const eventPlugin = const EventChannel("eventPlugin");
-  static const basicChannel = BasicMessageChannel("basicChannel", StandardMessageCodec());
-
-  @override
-  void initState() {
-    super.initState();
-    plugin.setMockMethodCallHandler((method) {
-      print(method.method);
-      return Future.value(method.method);
-    });
-
-    basicChannel.setMockMessageHandler((v) {
-      return Future.value(v);
-    });
-  }
+  int number = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('基础Widget'),
+        title: Text("HOME"),
       ),
-      body: Container(
-        child: Center(
-          child: FlatButton(
-            child: Text("发送"),
-            onPressed: () {
-              plugin.invokeMethod("sending", 123456).then((value) {
-                print("value = $value");
-              });
-//              basicChannel.send("message").then((value) {
-//                print("value = $value");
-//              });
-
-//              WriteBuffer buffer = WriteBuffer();
-//              writeSize(buffer, 123456);
-
-            },
-
-          )
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            RaisedButton(
+              child: Text("HomeNumber: $number"),
+              onPressed: () {
+                setState(() {
+                  number++;
+                });
+              },
+            ),
+            ContentView()
+          ],
         ),
       ),
     );
   }
+}
 
-  void writeSize(WriteBuffer buffer, int value) {
-    assert(0 <= value && value <= 0xffffffff);
-    if (value < 254) {
-      buffer.putUint8(value);
-    } else if (value <= 0xffff) {
-      buffer.putUint8(254);
-      buffer.putUint16(value);
-    } else {
-      buffer.putUint8(255);
-      buffer.putUint32(value);
-    }
-    var result = buffer.done();
-    print(result.buffer.asUint16List());
+// ignore: must_be_immutable
+class ContentView extends StatefulWidget {
+  int _number = 0;
 
-    print(16639 | 482);
+  @override
+  _ContentViewState createState() => _ContentViewState();
+}
+
+class _ContentViewState extends State<ContentView> {
+  @override
+  Widget build(BuildContext context) {
+    CancelableOperation o = CancelableOperation.fromFuture(Future.value(1), onCancel: (){
+
+    });
+    CancelableCompleter();
+    return Container(
+      child: RaisedButton(
+        child: Text("ContentView:${widget._number}"),
+        onPressed: () {
+          setState(() {
+            widget._number++;
+          });
+        },
+      ),
+    );
   }
 }
