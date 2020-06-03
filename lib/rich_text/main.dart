@@ -32,9 +32,9 @@ class _State extends State<Home> {
       body: Container(
         child: Text.rich(
           TextSpan(
-//              children: r'#_$a#_$4567#_$b#_$8#_$c#_$9999'.textSpanList
+              children: r'#_$a#_$4567#_$b#_$8#_$c#_$9999'.textSpanList
 //              children: '9999'.textSpanList
-              children: r'#_$苹果#_$9999'.textSpanList
+//              children: r'#_$苹果#_$9999'.textSpanList
           )
         )
       ),

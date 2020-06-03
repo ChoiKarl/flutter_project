@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterproject/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/provider/list_view_test/list_view_page.dart';
-import '基本使用/basic_use_page.dart';
+import 'package:flutterproject/state_control/provider/list_view_test/list_view_page.dart';
+import 'base_use/basic_use_page.dart';
 import 'package:provider/provider.dart';
 import "collect_test/collect_test_page.dart";
 

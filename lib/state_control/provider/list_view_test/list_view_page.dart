@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutterproject/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/provider/list_view_test/base/multi_state_widget.dart';
-import 'package:flutterproject/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/provider/list_view_test/base/page_state_view_model.dart';
+import 'package:flutterproject/state_control/provider/list_view_test/base/multi_state_widget.dart';
+import 'package:flutterproject/state_control/provider/list_view_test/base/page_state_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ListModel extends PageStateViewModel {

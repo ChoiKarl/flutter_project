@@ -6,6 +6,7 @@ class MFRichTextPart {
   int end = 0;
   String value = "";
   bool match = false; // 命中正则
+  String v = "";
 
   MFRichTextPart({this.start, this.end, this.value, this.match = false});
 
@@ -14,6 +15,7 @@ class MFRichTextPart {
     return "start:${this.start}, end:${this.end}, value:${this.value}";
   }
 }
+
 
 const _NormalRegulation = r'#_\$.+?#_\$';
 
@@ -56,7 +58,7 @@ extension RichTextPart on String {
       }
       String value = this.substring(start, end);
       MFRichTextPart model =
-          MFRichTextPart(start: start, end: end, value: value);
+      MFRichTextPart(start: start, end: end, value: value);
       modelList.add(model);
     }
 
