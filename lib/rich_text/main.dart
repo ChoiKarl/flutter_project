@@ -17,7 +17,6 @@ class Home extends StatefulWidget {
 }
 
 class _State extends State<Home> {
-
   @override
   void initState() {
     super.initState();
@@ -32,11 +31,12 @@ class _State extends State<Home> {
       body: Container(
         child: Text.rich(
           TextSpan(
-              children: r'#_$a#_$4567#_$b#_$8#_$c#_$9999'.textSpanList
-//              children: '9999'.textSpanList
-//              children: r'#_$苹果#_$9999'.textSpanList
-          )
-        )
+            children: r'#_$这是一个#_$需要特殊#_$展示#_$的字符串'.classicsStyleTextSpanList(
+              TextStyle(color: Colors.black),
+              specialStyle: TextStyle(color: Colors.blue),
+            ),
+          ),
+        ),
       ),
     );
   }

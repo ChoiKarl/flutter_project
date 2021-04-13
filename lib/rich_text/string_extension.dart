@@ -1,14 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 class MFRichTextPart {
-  int start = 0;
-  int end = 0;
-  String value = "";
+  int start;
+  int end;
+  String value;
   bool match = false; // 命中正则
-  String v = "";
 
-  MFRichTextPart({this.start, this.end, this.value, this.match = false});
+  MFRichTextPart({this.start = 0, this.end = 0, this.value = "", this.match = false});
 
   @override
   String toString() {
@@ -18,9 +15,14 @@ class MFRichTextPart {
 
 
 const _NormalRegulation = r'#_\$.+?#_\$';
-
 extension RichTextPart on String {
-  List<MFRichTextPart> richTextPartListWithRegulation(String regulation) {
+  List<MFRichTextPart> get classicsStyleRichTextPartList {
+    return richTextPartList(_NormalRegulation);
+  }
+
+  List<MFRichTextPart> richTextPartList(String regulation) {
+    assert(regulation != null);
+
     if (this.isEmpty) {
       return [];
     }
@@ -75,26 +77,21 @@ extension RichTextPart on String {
 
     return modelList;
   }
-
-  List<MFRichTextPart> get normalRichTextPartList {
-    return richTextPartListWithRegulation(_NormalRegulation);
-  }
 }
 
-extension RichText on String {
-  List<TextSpan> get textSpanList {
+extension MFRichText on String {
+  List<TextSpan> classicsStyleTextSpanList(TextStyle normalStyle, {TextStyle specialStyle}) {
+    assert(normalStyle != null);
     List<TextSpan> spans = [];
-
-    List<MFRichTextPart> parts = this.normalRichTextPartList;
-
+    List<MFRichTextPart> parts = this.classicsStyleRichTextPartList;
     for (MFRichTextPart part in parts) {
       if (part.match) {
         spans.add(TextSpan(
           text: part.value.replaceAll(r'#_$', ''),
-          style: TextStyle(color: Colors.red),
+          style: specialStyle ?? normalStyle.copyWith(color: Color(0xFFFF4891)),
         ));
       } else {
-        spans.add(TextSpan(text: part.value));
+        spans.add(TextSpan(text: part.value, style: normalStyle));
       }
     }
     return spans;

@@ -19,7 +19,7 @@ class CollectTestPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Selector<GoodsListProvider, Goods>(
                   selector: (context, provider) => provider.goodsList[index],
-                    shouldRebuild:(pre, next) {
+                  shouldRebuild: (pre, next) {
                     return pre != next;
                   },
                   builder: (context, data, child) {
@@ -44,7 +44,6 @@ class CollectTestPage extends StatelessWidget {
 }
 
 class Goods {
-
   String goodsName = "";
   bool isCollection = false;
 
@@ -58,9 +57,10 @@ class Goods {
 
 class GoodsListProvider extends ChangeNotifier {
   final List<Goods> _goodsList =
-  List.generate(20, (index) => Goods("index is $index", false));
+      List.generate(20, (index) => Goods("index is $index", false));
 
   List<Goods> get goodsList => _goodsList;
+
   int get total => _goodsList.length;
 
   void collect(int index) {

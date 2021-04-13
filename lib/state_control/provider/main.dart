@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/state_control/provider/list_view_test/list_view_page.dart';
+import 'package:flutterproject/state_control/provider/selector_test/selector_page_test.dart';
+import 'package:flutterproject/state_control/provider/test/test.dart';
 import 'base_use/basic_use_page.dart';
 import 'package:provider/provider.dart';
 import "collect_test/collect_test_page.dart";
@@ -54,6 +56,24 @@ class Home extends StatelessWidget {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
                   return ListViewTest();
+                }));
+              },
+            ),
+            RaisedButton(
+              child: Text("selector test"),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return SelectorTestPage();
+                }));
+              },
+            ),
+            RaisedButton(
+              child: Text("test"),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return TestPage();
                 }));
               },
             )
